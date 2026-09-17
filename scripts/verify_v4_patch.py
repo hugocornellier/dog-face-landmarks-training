@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import ctypes
+import os
 import statistics
 import struct
 import sys
@@ -41,8 +42,10 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 from bench_litert_macos import DYLIB, _bind, NUM_THREADS_OFFSET  # noqa: E402
 
-CACHE = Path("/private/tmp/claude-501/-Users-hugocornellier-IdeaProjects-dog-detection"
-             "/ee61cbfd-dd84-4c4a-82ea-cb1141e124d6/scratchpad/valcache")
+CACHE = Path(os.environ.get(
+    "DOGFLW_VALCACHE",
+    Path(__file__).resolve().parent.parent / "artifacts" / "valcache",
+))
 NL, LEFT, RIGHT = 46, 18, 19
 
 

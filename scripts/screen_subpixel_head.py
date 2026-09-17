@@ -25,6 +25,7 @@ If the numbers justify it, the weight rearrangement is the next piece of work.
 from __future__ import annotations
 
 import copy
+import os
 import sys
 from pathlib import Path
 
@@ -74,8 +75,10 @@ def build_subpixel(cfg, widths):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    cache = Path("/private/tmp/claude-501/-Users-hugocornellier-IdeaProjects-dog-detection"
-                 "/ee61cbfd-dd84-4c4a-82ea-cb1141e124d6/scratchpad/valcache")
+    cache = Path(os.environ.get(
+        "DOGFLW_VALCACHE",
+        Path(__file__).resolve().parent.parent / "artifacts" / "valcache",
+    ))
     X = np.asarray(np.load(cache / "crops_384_0.05_0.1.npy", mmap_mode="r")[:8])
 
     cfg = copy.deepcopy(T.EXPERIMENT_PRESETS["small_v3large_384_long"])

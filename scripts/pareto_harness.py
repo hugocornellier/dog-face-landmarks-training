@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 
@@ -30,8 +31,10 @@ DATA_ROOT = (
     Path.home() / ".cache" / "kagglehub" / "datasets"
     / "georgemartvel" / "dogflw" / "versions" / "1" / "DogFLW"
 )
-CACHE_DIR = Path("/private/tmp/claude-501/-Users-hugocornellier-IdeaProjects-dog-detection"
-                 "/ee61cbfd-dd84-4c4a-82ea-cb1141e124d6/scratchpad/valcache")
+CACHE_DIR = Path(os.environ.get(
+    "DOGFLW_VALCACHE",
+    Path(__file__).resolve().parent.parent / "artifacts" / "valcache",
+))
 
 NUM_LANDMARKS = 46
 LEFT_OUTER_EYE_IDX = 18

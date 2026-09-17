@@ -27,6 +27,7 @@ CHECK 2: cold start.
 from __future__ import annotations
 
 import ctypes
+import os
 import statistics
 import struct
 import sys
@@ -40,8 +41,10 @@ from bench_litert_macos import DYLIB, _bind, NUM_THREADS_OFFSET, LITERT_VERSION
 
 REPO = Path(__file__).resolve().parent.parent
 GPU_DYLIB = DYLIB.parent / "libtensorflowlite_gpu-mac.dylib"
-CACHE = Path("/private/tmp/claude-501/-Users-hugocornellier-IdeaProjects-dog-detection"
-             "/ee61cbfd-dd84-4c4a-82ea-cb1141e124d6/scratchpad/valcache")
+CACHE = Path(os.environ.get(
+    "DOGFLW_VALCACHE",
+    Path(__file__).resolve().parent.parent / "artifacts" / "valcache",
+))
 
 
 def _build(model: Path, backend: str, threads: int = 4):
