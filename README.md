@@ -1,4 +1,4 @@
-# dog-ml
+# dog-face-landmarks-training
 
 Training code, evaluation harness, and experiment journal for the dog facial
 landmark models that ship in the
@@ -105,6 +105,20 @@ python scripts/gen_landmark_examples.py  # prediction visualizations
 There are 72 scripts in `scripts/`, most of them one-off experiments from a
 specific round. The journal names the ones that matter.
 
+## Weights
+
+The trained weights are released on Hugging Face:
+
+**[hugocornellier/dog-face-landmarks](https://huggingface.co/hugocornellier/dog-face-landmarks)**
+
+That repository holds the face localizer, `dog_face_landmarks_full.tflite` (11 MB, ships in the Flutter package) and the EfficientNetV2-S 384 model (55 MB), the `.keras` sources for
+fine-tuning, and the per-model training config and epoch logs. The model card
+documents the input and output contract, which is the part you need to actually
+use them.
+
+Weights are **CC BY-NC 4.0**, non-commercial. See the License section below for
+why, and note that the code here is Apache 2.0: the two are different.
+
 ## Dataset
 
 Models here are trained on the
@@ -124,7 +138,7 @@ different places.
 
 - **Code** (everything in this repository): Apache License 2.0, see
   [`LICENSE`](LICENSE).
-- **Trained weights** (published separately, see below): CC BY-NC 4.0, see
+- **Trained weights** (released on Hugging Face, see above): CC BY-NC 4.0, see
   [`LICENSE-WEIGHTS`](LICENSE-WEIGHTS).
 
 The weights are non-commercial at the request of the dataset authors, who asked
