@@ -1,9 +1,13 @@
+import sys
+
 import numpy as np
 from PIL import Image
 import tensorflow as tf
 
 model_path = "artifacts/dog_face_detector/dog_face_localizer_224_float16.tflite"
-image_path = "/Users/hugocornellier/Downloads/cream-long-haired-dachshund-outside_Valeria-Head_Shutterstock.jpg"
+if len(sys.argv) < 2:
+    raise SystemExit("usage: python debug_face_localizer.py <image>")
+image_path = sys.argv[1]
 
 # Load model
 interp = tf.lite.Interpreter(model_path=model_path)
