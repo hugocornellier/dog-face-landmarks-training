@@ -2,7 +2,12 @@
 
 Training code, evaluation harness, and experiment journal for the dog facial
 landmark models that ship in the
-[dog_detection](https://github.com/hugocornellier/dog_detection) Flutter package.
+[dog_detection](https://pub.dev/packages/dog_detection) Flutter package
+([source](https://github.com/hugocornellier/dog_detection)).
+
+The trained weights themselves are on Hugging Face at
+[hugocornellier/dog-face-landmarks](https://huggingface.co/hugocornellier/dog-face-landmarks),
+under CC BY-NC 4.0.
 
 Two models are produced here, both exported to TFLite:
 
