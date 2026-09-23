@@ -1,5 +1,9 @@
 # dog-face-landmarks-training
 
+![Demo](demo.jpg)
+
+<sub>The 46 landmarks predicted by the models trained here (face localizer, then landmark model) on nine CC0 photos from Wikimedia Commons. Blue: ears. Green: eyes. Orange: nose. Yellow: mouth, chin and forehead. Photos, left to right from the top: [French bulldog](https://commons.wikimedia.org/wiki/File:Bulldog-1047518_1920.jpg) by Yuri; [Karelian Bear Dog](https://commons.wikimedia.org/wiki/File:Karjalankarhukoira,_Karelian_Bear_Dog_looking_at_camera.jpg) by Uusijani; [puppy](https://commons.wikimedia.org/wiki/File:Puppy_filtered.jpg) (Pixabay, photographer not named); [Australian Shepherd](https://commons.wikimedia.org/wiki/File:Australian_Shepherd_in_snow.jpg) (PxHere, photographer not named); [Rottweiler puppy](https://commons.wikimedia.org/wiki/File:Rottweiler_puppy_-21603071920.jpg) by Vlaaitje; [golden retriever](https://commons.wikimedia.org/wiki/File:Dog_with_dumbbell.jpg) by Heidi Sadecky; [puppy](https://commons.wikimedia.org/wiki/File:Puppy_by_Jairo_Alzate,_2015.jpg) by Jairo Alzate; [Jack Russell Terrier](https://commons.wikimedia.org/wiki/File:Black_and_White_Jack_Russell_Terrier.jpg) by United-flags-20; [puppy in Hamburg](https://commons.wikimedia.org/wiki/File:Hamburg_puppy_%28Unsplash%29.jpg) by Eddy Lackmann.</sub>
+
 Training code, evaluation harness, and experiment journal for the dog facial
 landmark models that ship in the
 [dog_detection](https://pub.dev/packages/dog_detection) Flutter package
