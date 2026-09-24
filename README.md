@@ -10,8 +10,9 @@ landmark models that ship in the
 ([source](https://github.com/hugocornellier/dog_detection)).
 
 The trained weights themselves are on Hugging Face at
-[hugocornellier/dog-face-landmarks](https://huggingface.co/hugocornellier/dog-face-landmarks),
-under CC BY-NC 4.0.
+[hugocornellier/dog-face-landmarks](https://huggingface.co/hugocornellier/dog-face-landmarks)
+and on Kaggle at
+[hugocornellier/dog-face-landmarks](https://www.kaggle.com/models/hugocornellier/dog-face-landmarks), under CC BY-NC 4.0.
 
 Two models are produced here, both exported to TFLite:
 
@@ -65,8 +66,10 @@ delegate you are targeting, and it has inverted more than once:
 - On **GPU via CompiledModel**, static is mandatory: a dynamic batch dimension
   makes every Conv2DTranspose build its output shape at run time, and GPU
   backends refuse the graph outright. Re-exporting from a batch-1 concrete
-  function is what let the shipped models reach the GPU, worth 27.10 ms to
-  3.82 ms on an M4 Max.
+  function, then splitting the deconv ReLU out of `TRANSPOSE_CONV` (version 4
+  to 3), is what let the shipped models reach the GPU, worth 27.10 ms to
+  3.82 ms on an M4 Max. The conversion does not split the ReLU by itself;
+  `scripts/reexport_static.py` does both. See the journal's 2026-09-24 entry.
 
 The models that ship today are the static exports, for the GPU reason. Benchmark
 both exports against the exact runtime and delegate you ship against, never
@@ -120,10 +123,21 @@ The trained weights are released on Hugging Face:
 
 **[hugocornellier/dog-face-landmarks](https://huggingface.co/hugocornellier/dog-face-landmarks)**
 
-That repository holds the face localizer, `dog_face_landmarks_full.tflite` (11 MB, ships in the Flutter package) and the EfficientNetV2-S 384 model (55 MB), the `.keras` sources for
-fine-tuning, and the per-model training config and epoch logs. The model card
-documents the input and output contract, which is the part you need to actually
-use them.
+That repository holds the face localizer and `dog_face_landmarks_full.tflite`
+(11 MB, ships in the Flutter package), the `.keras` sources for fine-tuning, and
+the per-model training config and epoch logs. The model card documents the input
+and output contract, which is the part you need to actually use them.
+
+The same files are on Kaggle at
+[hugocornellier/dog-face-landmarks](https://www.kaggle.com/models/hugocornellier/dog-face-landmarks),
+with a demo notebook, [Dog Facial Landmarks on DogFLW
+(TFLite)](https://www.kaggle.com/code/hugocornellier/dog-facial-landmarks-on-dogflw-tflite),
+that runs both stages on a DogFLW image.
+
+Until 24 September 2026 both also had the EfficientNetV2-S 384 landmark model
+(55 MB). It was withdrawn so that every released file runs on LiteRT's
+CompiledModel, CPU and GPU; the journal's 2026-09-24 entry has the reasons. It
+stays in the Hugging Face history and in version 1 on Kaggle.
 
 Weights are **CC BY-NC 4.0**, non-commercial. See the License section below for
 why, and note that the code here is Apache 2.0: the two are different.
